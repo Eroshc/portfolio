@@ -1,4 +1,4 @@
-document.querySelectorAll('.portfolio__project-name').forEach((project) => {
+document.querySelectorAll('.portfolio__project').forEach((project) => {
   project.addEventListener('click', () => {
     const link = project.getAttribute('data-link');
     if (link) {
