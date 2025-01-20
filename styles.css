@@ -1,0 +1,536 @@
+/* 
+  Aplicamos el modelo de caja `border-box` para que el padding y border se incluyan dentro del ancho y alto definidos.`scroll-behavior: smooth` asegura un desplazamiento suave al usar enlaces de anclaje.*/
+*{
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: sans-serif;
+  background-color: #e2eaff; 
+  color: #101632dd;
+}
+/* Elimina los margenes y padding de los elementos. */
+body, div, ul, header, footer, label, nav, a, li{
+  margin: 0;
+  padding: 0;
+}
+/*----Header Section*/
+/* Estilos para la barra de navegación principal.
+  - Fondo blanco para una apariencia limpia.
+  - Diseño con Flexbox para organizar elementos.
+  - Espaciado uniforme entre elementos y alineación centrada.
+  - Tamaño de fuente de 20px y color azul (#48e).*/
+.header{
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px 0px;
+  color: #48e;
+}
+
+/*Botón de menú para abrir la navegación.
+  - Color azul (#48e) y tamaño grande para visibilidad.
+  - Posicionado en la esquina derecha.
+  - Fuentes grandes y gruesas.
+*/
+.header__open-nav-button{
+  color: #48e;
+  font-size: 3rem;
+  font-weight: 600;
+  position: absolute;
+  right: 10px;
+}
+/* Navegación principal.
+  - Oculta inicialmente (`display: none`).
+  - Fondo blanco y ocupa toda la pantalla.
+  - Se coloca en la parte superior con z-index negativo para no interferir. */
+.header__nav{
+  display: none;
+  background-color: #fff;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  z-index: -1;
+}
+.header__checkbox{
+  display: none;
+}
+.header__checkbox:checked ~ .header__nav{
+  display: flex;
+}
+/* Lista de navegación dentro del menú.
+  - Diseñada como columna con Flexbox.
+  - Altura de 40vh y elementos distribuidos equitativamente. */
+.header__nav-list {
+  display: flex;
+  flex-direction: column;
+  height: 40vh;
+  margin: auto;
+  justify-content: space-evenly;
+}
+  /* Logo del encabezado.
+- Se ajusta al ancho máximo de 64px.
+- Márgenes para separar del resto de los elementos. */
+.header__logo{
+  max-width: 100%;
+  width: 64px;
+  margin: 10px 20px;
+}
+/* Elementos de la lista de navegación.
+  - Se eliminan los puntos de lista (`list-style: none`)*/
+.header__nav-item{
+  list-style: none;
+}
+.header__nav-item a {
+  color: inherit;
+  text-decoration: none;
+}
+/* Efectos para los enlaces cuando se interactúa con ellos.
+  - Subrayado al pasar el cursor o hacer clic. */
+.header__nav-item :is(:hover,:active){
+  text-decoration:underline;
+}
+
+/*Header Queries*/
+/* Aplica estilos avanzados y organiza el diseño de manera más adecuada para pantallas más grandes.*/
+@media screen and (min-width: 400px) {
+  /* Estilos para el header.
+  - Añade padding adicional.
+  - Implementa una animación llamada `header-movement` que se activa durante el scroll.
+  - Usa posición sticky para mantener el header visibleen la parte superior.*/
+  .header{
+    padding: 20px 0;
+    animation: header-movement both;
+    animation-timeline: scroll();
+    position: sticky;
+    top:0;
+    animation-range: 10px 100px;
+  }
+  /* Ajustes para la navegación.
+  - Se muestra siempre (`display: block`) en pantallas grandes.
+  - Posicionamiento estándar sin ocupar toda la pantalla. */
+  .header__nav{
+    display: block;
+    position: static;
+    height: auto;
+    width: auto;
+    justify-content: space-between;
+    background-color:initial ;
+  }
+  /* Lista de navegación.
+  - Cambia de columna a fila para aprovechar el espacio 
+horizontal.
+  - Añade un margen a la derecha para separar los 
+elementos del borde.*/
+  .header__nav-list{
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    gap: 20px;
+    margin-right: 40px;
+  }
+  .header__open-nav-button{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 40.625rem){
+  /*Ajustes para la navegación en pantallas pequeñas.
+  - Oculta inicialmente el contenido del menú (`height:
+0`) para un diseño más compacto.
+  - Usa `overflow: hidden` para prevenir que el 
+contenido desbordado sea visible.*/
+  .header__nav{
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+  }
+  .header__nav-list{
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+  .header__open-nav-button{
+    display: inline-flex;
+    color: inherit;
+    cursor: pointer;
+  }
+  .header:checked ~ .header__nav-list{
+    height: 100%;
+  }
+}
+
+/*Header Ends*/
+/*----------PROFILE SECTION*/
+.profile{
+  container-name: profile;
+  container-type:inline-size ;
+  animation: aparecer 2s both;
+}
+/* Contenedor general del perfil.
+  - Usa flexbox para alinear el contenido.
+  - Limita el ancho máximo y define un fondo blanco para 
+contraste.*/
+.profile__wrapper{
+  display: flex;
+  position: relative;
+  z-index: -1;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  max-width:1400px ;
+}
+/*Contenedor para los datos del perfil.
+  - Centra los elementos en una columna.
+  - Aplica un padding para espaciado y limita el ancho 
+máximo.*/
+.profile__data-container{
+  max-width: 600px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Contenedor para la imagen del perfil.
+  - Limita la altura máxima y oculta cualquier contenido 
+que exceda los límites. */
+.profile__img-container{
+  max-height: 500px;
+  overflow: hidden;
+}
+/* Imagen del perfil.
+  - Asegura que la imagen se ajuste al contenedor y tenga
+un tamaño máximo definido.*/
+.profile__img{
+  max-width: 100%;
+  width: 720px;
+}
+/*Estilo general para el título principal.
+  - Usa un color azul (#26a).
+  - Adapta el tamaño de fuente de forma dinámica con 
+`clamp`.
+  - Asegura un ajuste y manejo adecuado de textos largos*/
+h1{
+  color: #26a;
+  font-size: clamp(3rem,6vw,5rem);
+  text-wrap: balance;
+  overflow-wrap:break-word ;
+}
+/* - Centra el contenido y define un ancho máximo.*/
+.profile__skills-container{
+  margin: auto;
+  max-width: 600px;
+}
+.profile__skills-container h2{
+  color: #26a;
+}
+/*Cada habilidad dentro de la lista.
+  - Usa flexbox para alinear los elementos horizontalmente.
+  - Separa visualmente cada habilidad con márgenes.*/
+.profile__skill{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  margin-left: 0;
+  max-width: 600px;
+  align-items: center;
+}
+
+.profile__skill-name{
+  color: #48e;
+}
+/*Barra de progreso para las habilidades.
+  - Usa flexbox para permitir que las barras crezcan según
+el ancho disponible.
+  - Estilo visual con bordes redondeados y un color azul 
+claro (#48e).*/
+.load-bar{
+  display: flex;
+  flex-grow: 1;
+  border: 2px solid #48e;
+  border-radius: 8px;
+  color: #fff;
+  padding: 2px;
+  font-size: 12px;
+  width: 80%;
+  margin: 4px;
+  margin-left: 0;
+}
+.load-bar__bar{
+  background-color: #48e;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+/* Clase específica para una barra de progreso del 80%.*/
+.bar--80{
+  width: 80%;
+}
+/*Clase específica para una barra de progreso del 70%.*/
+.bar--70{
+  width: 70%;
+}
+.profile__description h1 { 
+  max-width: 100%; 
+  padding: 0;
+  margin: 0; 
+  overflow: hidden;  
+  text-overflow: ellipsis; 
+  white-space: nowrap;
+}
+/*PROFILE QUERIES*/
+@container profile (min-width:600px){
+  /*Cambia la disposición de los elementos dentro del 
+contenedor principal del perfil.
+ * - Cambia de columna a fila (`row`) para pantallas más 
+anchas.
+ * - Aplica un fondo transparente y agrega márgenes 
+automáticos.*/
+  .profile__wrapper{
+    flex-direction: row;
+    padding: 20px;
+    background-color: transparent;
+    height: auto;
+    margin: auto;
+  }
+  /* Contenedor de habilidades:
+  - Adapta el tamaño máximo y dirección de los elementos.
+  - Alinea el contenido al inicio.*/
+  .profile__skills-container{
+    display: flex;
+    max-width: 600px;
+    max-height: 400px;
+    flex-direction: column;
+    align-self: start;
+  }
+/* Contenedor de datos del perfil:
+  - Estilo visual mejorado con bordes redondeados y una 
+sombra sutil.
+  - Centra verticalmente los elementos en el eje 
+transversal.*/
+  
+  .profile__data-container{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-radius: 0px 25px 25px 0;
+    box-shadow: 0px 0px 9px #0002;
+  }
+  h1{
+    margin-top: 0;
+    font-size: 3rem;
+    text-wrap: balance;
+  }
+  /* - Limita el ancho máximo del contenedor.*/
+  .profile__data {
+    max-width: 620px;
+  }
+  .profile__img-container{
+    max-height: initial;
+    border-radius: 25px 0 0 25px;
+  }
+  .profile__img{
+    height: 100%;
+    object-fit: cover;
+    width: 620px;
+  }
+}
+/*PROFILE ENDS*/
+
+
+/*-----PROTFOLIO SECTION*/
+.portfolio{
+  background-color: #18233f;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  container-name: portfolio ; /*Define un contenedor para usar en consultas con @container*/
+  container-type: inline-size;/*Define el tamaño del  contenedor en funcion del ancho*/
+justify-content: space-evenly;/*Distribuye los elementos uniformemente*/
+}
+.portfolio__title{
+  font-size: 3rem;
+  margin-bottom: 0;
+}
+.portfolio__project-container{
+  display: grid;/*Crea un layout de rejilla*/
+  grid-template-columns: 1fr;/*Una columna por defecto*/
+  max-width: 1300px;
+  margin: auto;/*Centra el contenedor horizontalmente*/
+  width: 100%;
+  gap: 12px;/*Espacio entre los proyectos*/
+  padding: 12px;
+  min-height: 80vh;
+}
+
+.portfolio__project{
+  background-position: center;/* Centra la imagen de fondo */
+  background-size:cover;
+  display: grid;/* Alineación interna usando grid */
+  place-content: center;/* Centra el contenido internamente */
+  border-radius: 8px;
+  animation: aparecer both;/* Aplica una animación de entrada */
+  animation-timeline: view();/* Activa la animación según la visualización (si está soportado) */
+  animation-range: cover 5% cover 50%;
+}
+.portfolio__project:nth-child(1){
+  background-image: linear-gradient(#0009,#0009), url(picture/paisaje_nevado.png);
+}
+.portfolio__project:nth-child(2){
+  background-image: linear-gradient(#0009,
+#0009), url(picture/calculadora.png);
+}
+.portfolio__project:nth-child(3){
+  background-image: linear-gradient(#0009,
+#0009), url(picture/clock.PNG);
+}
+.portfolio__project:nth-child(4){
+  background-image: linear-gradient(#0009,
+#0009), url(picture/presentation.png);
+}
+.portfolio__project:nth-child(5){
+  background-image: linear-gradient(#0009,
+#0009), url(picture/sidebar.png);
+}
+.portfolio__project:nth-child(6){
+  background-image: linear-gradient(#0009,
+#0009), url(picture/card.png);
+}
+.portfolio__project:hover{
+  opacity: 0.74;/* Reduce la opacidad para un efecto visual */
+  outline: 2px solid #fff6;
+}
+
+/*-------------PROTFOLIO QUERIES*/
+/* Cambia la disposición de los proyectos en la rejilla cuando el contenedor tiene un ancho mínimo de 56.25rem (900px) */
+@container portfolio (min-width:  56.25rem){
+.portfolio__project-container{
+  grid-template-columns: repeat(auto-fill,minmax(420px,1fr));
+  
+}
+.portfolio__project:first-child{
+  grid-column: span 2; /* El primer proyecto abarca dos columnas */
+}
+.portfolio__project:last-child{
+  grid-column: span 2;/* El último proyecto abarca dos columnas */
+}
+}
+/* -------PROTFOLIO ENDS*/
+
+/*CONTACT SECTION*/
+.form{
+  min-height: 60vh;
+  display: flex;/* Usa flexbox para la disposición */
+  flex-direction: column;
+  justify-content: center;/* Centra los elementos en el eje vertical */
+  align-items: center;/* Centra los elementos en el eje horizontal */
+  padding: 30px 0;
+  container-name: form;/* Define el nombre del contenedor para usar con consultas de contenedor */
+  container-type: inline-size;/* Hace que el contenedor se adapte a la anchura disponible */
+  animation: aparecer both;/* Aplica una animación de aparición */
+  animation-timeline: view(); /* Especifica la animación según la vista*/
+  animation-range: cover 20% contain 50%;/* Define los puntos de animación */
+
+}
+.form__form{
+  padding: 12px;
+  max-width: 600px;
+  width: 100%;
+  display: grid;
+  margin-bottom: 30px;
+}
+.form__input-container :is(input, textarea){
+  width: 100%;
+  padding: 9px;
+  font-size: 16px;
+  margin: 4px;
+  border: none;
+  box-shadow: 2px 2px 9px #0003;/* Sombra sutil alrededor de los campos */
+}
+.form__input-container textarea{
+  resize: none;/* Desactiva el redimensionamiento de la caja de texto */
+  min-height: 120px;
+  font-family: inherit;/* Mantiene la misma fuente que el formulario */
+}
+.form__input-container input[type="submit"]{
+  padding: 12px;
+  background-color: #48e;
+  color: #fff;
+}
+.form__title{
+  font-size: 2.6rem;
+}
+/*CONTACT QUERIES*/
+
+@container form (min-width:56.25rem){
+  .form__form{
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+          "name lastname" /* Asigna los campos 'name' y 'lastname' a las dos primeras columnas */
+          "email email" /* El campo de 'email' ocupa ambas columnas */
+          "message message" /* El campo de 'message' ocupa ambas columnas */
+          "button button"; /* El botón de envío ocupa ambas columnas */
+    gap:12px;
+    background-image:linear-gradient( #18233f44,  #18233f11) ;
+    padding: 30px;
+    border-radius:12px ;
+    box-shadow: 0 0 48px #0007;
+  }
+  .form__input-container:first-child{
+    grid-area: name;/* Asigna el primer contenedor de entrada al área 'name' */
+  }
+  .form__input-container:nth-child(2){
+    grid-area: lastname;/* Asigna el segundo contenedor de entrada al área 'lastname' */
+  }
+  .form__input-container:nth-child(3){
+    grid-area: email;/* Asigna el tercer contenedor de entrada al área 'email' */
+
+  }
+  .form__input-container:nth-child(4){
+    grid-area: message; /* Asigna el cuarto contenedor de entrada al área 'message' */
+  }
+  .form__input-container:nth-child(5){
+    grid-area: button;/* Asigna el quinto contenedor de entrada al área 'button' */
+
+  }
+}
+/*CONTACT END*/
+
+/*FOOTER*/
+footer{
+  padding: 60px;/* Espacio interno del footer */
+  text-align: center;/* Centra el contenido dentro del footer */
+  background-color: #18233f;/* Color de fondo oscuro */
+  color: #fff;
+  font-size: 20px;
+}
+
+/*ANIMACIONES*/
+@keyframes header-movement{
+  from{
+    padding: 20px 0;/* Espacio inicial */
+    background-color: #fff;
+    
+  }to{
+    padding: 0;
+    color: #fff;
+    background-color: #0006;
+    z-index: 10;/* Ajusta el nivel de apilamiento */
+  }
+}
+@keyframes aparecer{
+  from{
+    opacity: 0;/* Inicia con opacidad 0 (transparente) */
+    
+  }to{
+    opacity: 1;/* Finaliza con opacidad 1 (totalmente visible) */
+  }
+}

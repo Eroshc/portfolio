@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Portfolio Project</title>
+</head>
+<body>
+  <!-- Contenedor del encabezado -->
+  <header class="header">
+    <input type="checkbox" class="header__checkbox" id="open-menu">
+    <label for="open-menu" class="header__open-nav-button" role="button">=</label>
+    <!-- Contenedor del logotipo -->
+    <div class="header__logo-container">
+      <img class="header__logo" src="img/logo-juju.png">
+    </div>
+
+    <!-- Menú de navegación -->
+    <nav class="header__nav">
+      <ul class="header__nav-list">
+        <!-- Enlace al apartado "About" -->
+        <li class="header__nav-item">
+          <a href="#profile">About</a>
+        </li>
+        <!-- Enlace del apartado "Portfolio" -->
+        <li class="header__nav-item">
+          <a href="#portfolio">Portfolio</a>
+        </li>
+        <!-- Enlace del apartado "Contact" -->
+        <li class="header__nav-item"><a href="#form">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Contenedor principal de la sección del perfil -->
+  <main class="profile" id="profile">
+    <div class="profile__wrapper">
+      <!-- Contenedor de la imagen del perfil  -->
+      <div class="profile__img-container">
+        <img src="img/satoru-gojo.png" class="profile__img">
+      </div>
+      <!-- Contenedor de los datos del perfil -->
+      <div class="profile__data-container">
+        <div class="profile__data">
+          <!-- Descripción del perfil -->
+          <div class="profile__description">
+            <h1>¿Quien es Eros Silva?</h1>
+            <p>Soy un joven estudiante de ingeniería apasionado por la tecnología y el diseño web. Estoy dando mis primeros pasos como programador frontend, aprendiendo a crear experiencias digitales atractivas y funcionales. Me entusiasma la idea de seguir creciendo y aprendiendo nuevas herramientas y tecnologías que me permitan desarrollar proyectos innovadores. ¡Estoy listo para afrontar nuevos retos y seguir avanzando en mi camino profesional!</p>
+          </div>
+
+          <!-- Contendor de habilidades -->
+          <div class="profile__skills-container">
+            <h2>SKILLS</h2>
+            <ul>
+              <!-- Habilidades  -->
+              <li class="profile__skill">
+                <div class="load-bar">  <!--Barra de carga-->
+                  <div class="load-bar__bar 
+                bar--80">80%</div> <!--Barra con nivel de carga-->
+                </div>
+                <span class="profile__skill-name">HTML</span>
+              </li>
+              <li class="profile__skill">
+                <div class="load-bar">
+                  <div class="load-bar__bar 
+                bar--80">80%</div>
+                </div>
+                <span class="profile__skill-name">CSS</span>
+              </li>
+              <li class="profile__skill">
+                <div class="load-bar">
+                  <div class="load-bar__bar 
+                bar--70">70%</div>
+                </div>
+                <span class="profile__skill-name">JS</span>
+              </li>
+              <li class="profile__skill">
+                <div class="load-bar">
+                  <div class="load-bar__bar 
+                bar--70">70%</div>
+                </div>
+                <span class="profile__skill-name">Git-Hub</span>
+              </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Sección del portafolio -->
+  <section class="portfolio" id="portfolio">
+    <h2 class="portfolio__title">PORTFOLIO SECTION</h2>
+    <!-- Contenedor de los proyectos del portafolio -->
+    <div class="portfolio__project-container">
+      <!-- Proyecto 1  -->
+      <div class="portfolio__project">
+        <h2 class="portfolio__project-name"  data-link="https://login-nevado.netlify.app/">Project LogIn</h2>
+      </div>
+      <!-- Proyecto 2  -->
+      <div class="portfolio__project">
+        <h2 class="portfolio__project-name" data-link="https://calcu-functional.netlify.app/">Project Calculator</h2>
+      </div>
+      <!-- Proyecto 3 -->
+      <div class="portfolio__project">
+        <h2 class="portfolio__project-name" data-link="https://clock-real.netlify.app/">Project Clock</h2>
+      </div>
+      <!-- Proyecto 4 -->
+      <div class="portfolio__project">
+        <h2 class="portfolio__project-name" data-link="https://card-presen.netlify.app/" >Project Card Presentation</h2>
+      </div>
+      <!-- Proyecto 5 -->
+      <div class="portfolio__project">
+        <h2 class="portfolio__project-name" data-link="https://sidebar-sato.netlify.app/">Project Sidebar</h2>
+      </div>
+      <!-- Proyecto 6 -->
+      <div class="portfolio__project">
+        <h2 class="portfolio__project-name" data-link="https://cards-marvel.netlify.app/">Project Cards</h2>
+      </div>
+
+    </div>
+    <script src="proyect.js"></script>
+  </section>
+  <!-- Sección del formulario de contacto -->
+  <section class="form" id="form">
+    <h2 class="form__title">CONTACT</h2>
+    <!-- Formulario de contacto -->
+    <form class="form__form">
+      <!-- Campo de entrada para el nombre  -->
+      <div class="form__input-container" >
+        <label>Nombre
+          <input type="text" placeholder="John" required>
+        </label>
+      </div>
+      <!-- Campo de entrada para el apellido  -->
+      <div class="form__input-container">
+        <label>Apellido
+          <input type="text" placeholder="Doe" required>
+        </label>
+      </div>
+      <!-- Campo de entrada para el correo electrónico -->
+      <div class="form__input-container">
+        <label>E-Mail
+          <input type="email" placeholder="youremail@example.com" required>
+        </label>
+      </div>
+      <!-- Campo para el mensaje -->
+      <div class="form__input-container">
+        <label>Mensaje
+          <textarea placeholder="Your Mensaje"></textarea>
+        </label>
+      </div>
+      <!-- Boton de envío -->
+      <div class="form__input-container">
+        <input type="submit">
+      </div>
+    </form>
+  </section>
+  <footer>
+    <p>Desarrollado por Eros Silva - Estudiante de Ingeniería y Programador Frontend</p>
+  <p>&copy; 2025 - Todos los derechos reservados</p>
+  </footer>
+</body>
+</html>
